@@ -1,0 +1,21 @@
+{
+  "name": "frozen-beard-saga",
+  "version": "0.1.0",
+  "description": "Game project created using gameutils.js",
+  "devDependencies": {
+    "archiver": "^2.0.0",
+    "async": "^2.5.0",
+    "fs-extra": "^3.0.1",
+    "google-closure-compiler": "^20151015.0.0",
+    "htmlparser2": "^3.8.3",
+    "nw": "^0.23.5",
+    "yargs": "^6.4.0"
+  },
+  "scripts": {
+    "ogg2mp3": "node tools/ffmpeg-batch.js ogg2mp3 assets/audio/",
+    "mp32ogg": "node tools/ffmpeg-batch.js mp32ogg assets/audio/",
+    "compile": "node tools/compile-js.js",
+    "compile_js": "node tools/compile-js.js --only-js",
+    "create_cordova_project": "node tools/create-cordova-project.js"
+  }
+}
