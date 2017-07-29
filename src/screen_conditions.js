@@ -1,5 +1,17 @@
 'use strict';
 
+var formatDay = function(day) {
+    if (day % 10 === 1) {
+        return day + 'st';
+    } else if (day % 10 === 2) {
+        return day + 'nd';
+    } else if (day % 10 === 3) {
+        return day + 'rd';
+    } else {
+        return day + 'th';
+    }
+};
+
 var formatDate = function(date) {
     var monthNames = [
         "January", "February", "March",
@@ -12,7 +24,7 @@ var formatDate = function(date) {
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
 
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    return formatDay(day) + ' of ' + monthNames[monthIndex] + ' ' + year;
 };
 
 /**

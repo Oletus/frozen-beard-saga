@@ -22,7 +22,13 @@ var Game = function(resizer) {
     }
     this.takeScreenshot = false;
     
+    var gameDate = new Date();
+    gameDate.setYear(1910);
+    gameDate.setMonth(9);
+    gameDate.setDate(1);
+    
     this.conditions = new Conditions({
+        date: gameDate,
         distanceFromPole: 1300
     });
     this.conditionsUI = new ConditionsUI(this.conditions);
