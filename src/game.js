@@ -21,6 +21,11 @@ var Game = function(resizer) {
         this.input.addListener(undefined, ['0'], this.devModeTakeScreenshot);
     }
     this.takeScreenshot = false;
+    
+    this.conditions = new Conditions({
+        distanceFromPole: 1300
+    });
+    this.conditionsUI = new ConditionsUI(this.conditions);
 };
 
 Game.prototype.render = function(ctx) {
@@ -30,11 +35,14 @@ Game.prototype.render = function(ctx) {
     if (ctx === undefined) {
         ctx = this.realCtx;
     }
-    ctx.fillStyle = cssUtil.rgbString([0, 0, (Math.sin(this.time) * 0.5 + 0.5) * 255]);
+    ctx.fillStyle = '#222';
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#fff';
-    ctx.textAlign = 'center';
-    ctx.fillText("Add ?devMode=1 to the URL to use developer mode!", ctx.canvas.width * 0.5, 20);
+    
+    ctx.save();
+    ctx.translate(200, 400);
+    ctx.scale(20, 20);
+    this.conditionsUI.render(ctx);
+    ctx.restore();
     
     var that = this;
     if (this.takeScreenshot) {
@@ -122,7 +130,9 @@ window['start'] = function() {
     });
     
     var resizer = new GJS.CanvasResizer({
-        mode: GJS.CanvasResizer.Mode.DYNAMIC,
+        mode: GJS.CanvasResizer.Mode.FIXED_COORDINATE_SYSTEM,
+        width: 1280,
+        height: 720,
         canvas: canvas,
         wrapperElement: canvasWrapper
     });
